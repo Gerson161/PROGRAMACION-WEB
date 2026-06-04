@@ -3,14 +3,14 @@
 }
 
 body {
-  /* pa cambiar la letra xq sino c ve feo */
+  /* Diseño visual de fuente */
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Verdana;
   color: #222;
 }
 
 .barra {
-  /* pa pintar la varra de ariva */
+  /* Diseño de barra superior */
   display: flex;
   justify-content: space-between;
   padding: 12px 20px;
@@ -94,7 +94,7 @@ button {
 .tablaSimple {
   overflow-x: auto;
 }
-
+/* Caracteristicas de tabla*/
 table {
   width: 100%;
   border-collapse: collapse;
@@ -111,7 +111,7 @@ td {
   font-weight: bold;
 }
 
-/* pa ke c bean en celus chikos */
+/* Adapatación a dispositivos moviles*/
 @media (max-width: 700px) {
   .barra,
   .encabezadoPanel {
