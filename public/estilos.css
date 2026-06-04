@@ -111,16 +111,22 @@ td {
   font-weight: bold;
 }
 
-/* Adapatación a dispositivos moviles*/
 @media (max-width: 700px) {
   .barra,
   .encabezadoPanel {
     display: block;
+    margin-bottom: 15px;
   }
 
   #seccionAuth,
   .gridFormulario,
   .accionesLinea {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .gridFormulario > *,
+  .accionesLinea > * {
+    margin-bottom: 8px;
   }
 }
