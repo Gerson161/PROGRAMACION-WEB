@@ -1,22 +1,22 @@
-// aki guardamos los datos en el nauegador xq toy chiquito y no se usar redux
+// pa guardar los datos en el nauegador
 const estado = {
   codigoAcceso: localStorage.getItem("codigoAcceso"),
   usuario: JSON.parse(localStorage.getItem("usuario") || "null")
 };
 
-// funcion ultra pro pa' no escribir document.querySelector
+// pa elejir cosas del html mas rapido
 const $ = (selector) => document.querySelector(selector);
 const esAdmin = () => estado.usuario?.rol === "admin";
 const datosForm = (form) => Object.fromEntries(new FormData(form));
 const cuerpo = (datos) => ({ body: JSON.stringify(datos) });
 
-// pa' ke aparesca un mensajito y se borre solo, magia pura
+// pa mostrar un mesaje ke dsp c borra
 function mensaje(texto) {
   $("#mensaje").textContent = texto;
   setTimeout(() => $("#mensaje").textContent = "", 3500);
 }
 
-// petision al serbidor ke no c caiga porfabor
+// pa pedirle datos al serbidor
 async function api(ruta, opciones = {}) {
   const respuesta = await fetch(ruta, {
     ...opciones,
@@ -53,7 +53,7 @@ function cerrarSesion() {
   pintarPantalla();
 }
 
-// esto pinta la pantalla, si no anda es kulpa del css
+// pa dibujar la pantalla
 function pintarPantalla() {
   const conSesion = Boolean(estado.codigoAcceso);
   ["seccionAuth", "seccionSistema", "btnSalir", "panelAdminLibros", "panelUsuarios"].forEach((id) => {
@@ -136,7 +136,7 @@ async function cambiarPrestamo(id, accion) {
   cargarLibros();
 }
 
-// rellenar formulario con copy paste de internet
+// pa rellenar el formulario con los datos
 function llenarForm(form, datos) {
   Object.keys(datos).forEach((campo) => {
     if (form[campo]) form[campo].value = datos[campo] ?? "";
