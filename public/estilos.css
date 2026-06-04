@@ -34,7 +34,7 @@ body {
 .gridFormulario,
 .tarjetas {
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 #seccionAuth {
@@ -73,7 +73,7 @@ input,
 select,
 button {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
 }
 
 button {
@@ -111,7 +111,7 @@ td {
   font-weight: bold;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) { 
   .barra,
   .encabezadoPanel {
     display: block;
