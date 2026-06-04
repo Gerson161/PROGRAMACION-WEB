@@ -1,23 +1,23 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const { Usuario } = require("./modelos");
-const { verificarToken, soloAdmin } = require("./middleware");
+const { verificarToken, soloAdmin } = require("./intermediarios");
 
 const router = express.Router();
 
 router.get("/", verificarToken, soloAdmin, async (req, res) => {
   const usuarios = await Usuario.findAll({
-    attributes: ["id", "nombre", "email", "rol"],
+    attributes: ["id", "nombre", "correo", "rol"],
     order: [["id", "DESC"]]
   });
   res.json(usuarios);
 });
 
 router.post("/", verificarToken, soloAdmin, async (req, res) => {
-  const { nombre, email, password, rol } = req.body;
-  const passwordEncriptado = await bcrypt.hash(password, 10);
-  const usuario = await Usuario.create({ nombre, email, password: passwordEncriptado, rol });
-  res.status(201).json({ mensaje: "Usuario creado", usuario: { id: usuario.id, nombre, email, rol } });
+  const { nombre, correo, contrasena, rol } = req.body;
+  const contrasenaEncriptada = await bcrypt.hash(contrasena, 10);
+  const usuario = await Usuario.create({ nombre, correo, contrasena: contrasenaEncriptada, rol });
+  res.status(201).json({ mensaje: "Usuario creado", usuario: { id: usuario.id, nombre, correo, rol } });
 });
 
 router.put("/:id", verificarToken, soloAdmin, async (req, res) => {
@@ -25,8 +25,8 @@ router.put("/:id", verificarToken, soloAdmin, async (req, res) => {
   if (!usuario) return res.status(404).json({ mensaje: "Usuario no encontrado" });
 
   const datos = { ...req.body };
-  if (datos.password) datos.password = await bcrypt.hash(datos.password, 10);
-  if (!datos.password) delete datos.password;
+  if (datos.contrasena) datos.contrasena = await bcrypt.hash(datos.contrasena, 10);
+  if (!datos.contrasena) delete datos.contrasena;
 
   await usuario.update(datos);
   res.json({ mensaje: "Usuario actualizado" });

@@ -1,7 +1,7 @@
 const express = require("express");
 const { Op } = require("sequelize");
 const { Libro } = require("./modelos");
-const { verificarToken, soloAdmin } = require("./middleware");
+const { verificarToken, soloAdmin } = require("./intermediarios");
 
 const router = express.Router();
 

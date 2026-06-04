@@ -11,8 +11,8 @@ DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
-  email VARCHAR(120) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
+  correo VARCHAR(120) NOT NULL UNIQUE,
+  contrasena VARCHAR(255) NOT NULL,
   rol ENUM('admin','usuario') NOT NULL DEFAULT 'usuario'
 );
 
@@ -36,7 +36,7 @@ CREATE TABLE prestamos (
   CONSTRAINT fk_prestamos_libros FOREIGN KEY (libro_id) REFERENCES libros(id) ON DELETE CASCADE
 );
 
-INSERT INTO usuarios (nombre, email, password, rol) VALUES
+INSERT INTO usuarios (nombre, correo, contrasena, rol) VALUES
 ('Administrador', 'admin@biblioteca.com', '$2b$10$W9CCKDFcVkc8DH6JMVP8YebAv6hftnNZ1P3c/u43gkWN/CV3vTiL6', 'admin');
 
 INSERT INTO libros (titulo, autor, categoria, cantidad) VALUES

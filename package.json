@@ -2,10 +2,10 @@
   "name": "sistema-biblioteca",
   "version": "1.0.0",
   "description": "Sistema web simple de gestion de biblioteca con Node, Express, Sequelize y MySQL/XAMPP.",
-  "main": "servidor/app.js",
+  "main": "servidor/aplicacion.js",
   "scripts": {
-    "start": "node servidor/app.js",
-    "dev": "nodemon servidor/app.js"
+    "start": "node servidor/aplicacion.js",
+    "dev": "nodemon servidor/aplicacion.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

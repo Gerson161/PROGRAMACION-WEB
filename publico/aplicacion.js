@@ -1,5 +1,5 @@
 const estado = {
-  token: localStorage.getItem("token"),
+  codigoAcceso: localStorage.getItem("codigoAcceso"),
   usuario: JSON.parse(localStorage.getItem("usuario") || "null")
 };
 
@@ -18,7 +18,7 @@ async function api(ruta, opciones = {}) {
     ...opciones,
     headers: {
       "Content-Type": "application/json",
-      ...(estado.token && { Authorization: `Bearer ${estado.token}` }),
+      ...(estado.codigoAcceso && { Authorization: `Bearer ${estado.codigoAcceso}` }),
       ...opciones.headers
     }
   });
@@ -35,22 +35,22 @@ async function intentar(accion) {
   }
 }
 
-function guardarSesion({ token, usuario }) {
-  Object.assign(estado, { token, usuario });
-  localStorage.setItem("token", token);
+function guardarSesion({ codigoAcceso, usuario }) {
+  Object.assign(estado, { codigoAcceso, usuario });
+  localStorage.setItem("codigoAcceso", codigoAcceso);
   localStorage.setItem("usuario", JSON.stringify(usuario));
   pintarPantalla();
 }
 
 function cerrarSesion() {
-  Object.assign(estado, { token: null, usuario: null });
-  localStorage.removeItem("token");
+  Object.assign(estado, { codigoAcceso: null, usuario: null });
+  localStorage.removeItem("codigoAcceso");
   localStorage.removeItem("usuario");
   pintarPantalla();
 }
 
 function pintarPantalla() {
-  const conSesion = Boolean(estado.token);
+  const conSesion = Boolean(estado.codigoAcceso);
   ["seccionAuth", "seccionSistema", "btnSalir", "panelAdminLibros", "panelUsuarios"].forEach((id) => {
     const ocultar = id === "seccionAuth" ? conSesion : id.includes("Admin") || id === "panelUsuarios" ? !esAdmin() : !conSesion;
     $(`#${id}`).classList.toggle("oculto", ocultar);
@@ -103,8 +103,8 @@ async function cargarPrestamos() {
 
 async function cargarUsuarios() {
   const usuarios = await api("/usuarios");
-  tabla("#listaUsuarios", ["Nombre", "Email", "Rol", "Acciones"], usuarios.map((u) => [
-    u.nombre, u.email, u.rol,
+  tabla("#listaUsuarios", ["Nombre", "Correo", "Rol", "Acciones"], usuarios.map((u) => [
+    u.nombre, u.correo, u.rol,
     `<button onclick='editarUsuario(${JSON.stringify(u)})'>Editar</button>
      <button onclick="eliminarUsuario(${u.id})">Eliminar</button>`
   ]));
@@ -142,7 +142,7 @@ function editarLibro(libro) {
 }
 
 function editarUsuario(usuario) {
-  llenarForm($("#formUsuario"), { ...usuario, password: "" });
+  llenarForm($("#formUsuario"), { ...usuario, contrasena: "" });
 }
 
 function limpiarForm(selector) {
@@ -162,14 +162,14 @@ const eliminarUsuario = (id) => eliminar(`/usuarios/${id}`, "Desea eliminar este
 
 $("#formRegistro").addEventListener("submit", (e) => intentar(async () => {
   e.preventDefault();
-  await api("/auth/register", { method: "POST", ...cuerpo(datosForm(e.target)) });
+  await api("/autenticacion/registro", { method: "POST", ...cuerpo(datosForm(e.target)) });
   e.target.reset();
   mensaje("Registro correcto, ahora puede iniciar sesion");
 }));
 
-$("#formLogin").addEventListener("submit", (e) => intentar(async () => {
+$("#formIngreso").addEventListener("submit", (e) => intentar(async () => {
   e.preventDefault();
-  guardarSesion(await api("/auth/login", { method: "POST", ...cuerpo(datosForm(e.target)) }));
+  guardarSesion(await api("/autenticacion/ingreso", { method: "POST", ...cuerpo(datosForm(e.target)) }));
 }));
 
 $("#formLibro").addEventListener("submit", (e) => intentar(async () => {
@@ -185,7 +185,7 @@ $("#formLibro").addEventListener("submit", (e) => intentar(async () => {
 $("#formUsuario").addEventListener("submit", (e) => intentar(async () => {
   e.preventDefault();
   const datos = datosForm(e.target);
-  if (!datos.password) delete datos.password;
+  if (!datos.contrasena) delete datos.contrasena;
   await api(datos.id ? `/usuarios/${datos.id}` : "/usuarios", { method: datos.id ? "PUT" : "POST", ...cuerpo(datos) });
   limpiarForm("#formUsuario");
   mensaje(datos.id ? "Usuario actualizado" : "Usuario creado");

@@ -1,19 +1,19 @@
 const jwt = require("jsonwebtoken");
-const { jwtSecreto } = require("./configuracion");
+const { secretoSesion } = require("./configuracion");
 
 function verificarToken(req, res, next) {
   const cabecera = req.headers.authorization || "";
-  const token = cabecera.startsWith("Bearer ") ? cabecera.slice(7) : null;
+  const codigoAcceso = cabecera.startsWith("Bearer ") ? cabecera.slice(7) : null;
 
-  if (!token) {
-    return res.status(401).json({ mensaje: "Token no enviado" });
+  if (!codigoAcceso) {
+    return res.status(401).json({ mensaje: "Codigo de acceso no enviado" });
   }
 
   try {
-    req.usuario = jwt.verify(token, jwtSecreto);
+    req.usuario = jwt.verify(codigoAcceso, secretoSesion);
     next();
   } catch (error) {
-    return res.status(401).json({ mensaje: "Token invalido" });
+    return res.status(401).json({ mensaje: "Codigo de acceso invalido" });
   }
 }
 

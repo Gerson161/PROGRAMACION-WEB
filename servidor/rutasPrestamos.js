@@ -1,7 +1,7 @@
 const express = require("express");
 const crypto = require("crypto");
 const { Prestamo, Libro, Usuario } = require("./modelos");
-const { verificarToken, soloAdmin } = require("./middleware");
+const { verificarToken, soloAdmin } = require("./intermediarios");
 
 const router = express.Router();
 
@@ -27,7 +27,7 @@ router.get("/", verificarToken, async (req, res) => {
   const prestamos = await Prestamo.findAll({
     where,
     include: [
-      { model: Usuario, attributes: ["id", "nombre", "email"] },
+      { model: Usuario, attributes: ["id", "nombre", "correo"] },
       { model: Libro, attributes: ["id", "titulo", "autor"] }
     ],
     order: [["id", "DESC"]]

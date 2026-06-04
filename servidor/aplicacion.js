@@ -4,7 +4,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const { puerto } = require("./configuracion");
 const { sequelize, Usuario, Libro } = require("./modelos");
-const rutasAuth = require("./rutasAuth");
+const rutasAutenticacion = require("./rutasAutenticacion");
 const rutasLibros = require("./rutasLibros");
 const rutasPrestamos = require("./rutasPrestamos");
 const rutasUsuarios = require("./rutasUsuarios");
@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "publico")));
 
-app.use("/auth", rutasAuth);
+app.use("/autenticacion", rutasAutenticacion);
 app.use("/libros", rutasLibros);
 app.use("/prestamos", rutasPrestamos);
 app.use("/usuarios", rutasUsuarios);
@@ -29,8 +29,8 @@ async function crearDatosIniciales() {
   if (totalUsuarios === 0) {
     await Usuario.create({
       nombre: "Administrador",
-      email: "admin@biblioteca.com",
-      password: await bcrypt.hash("123456", 10),
+      correo: "admin@biblioteca.com",
+      contrasena: await bcrypt.hash("123456", 10),
       rol: "admin"
     });
   }
