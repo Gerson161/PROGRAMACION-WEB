@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+.barra {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #333;
+  color: white;
+}
+
+.contenedor {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 12px;
+}
+
+.panel {
+  border: 1px solid #ccc;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+#seccionAuth,
+.gridFormulario,
+.tarjetas {
+  display: grid;
+  gap: 10px;
+}
+
+#seccionAuth {
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridFormulario {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tarjetas {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.tarjeta {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+form,
+.accionesLinea,
+.accionesTarjeta {
+  display: grid;
+  gap: 8px;
+}
+
+.accionesLinea {
+  grid-template-columns: 1fr 90px 90px;
+}
+
+.accionesTarjeta {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 8px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.encabezadoPanel {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.oculto {
+  display: none !important;
+}
+
+.tablaSimple {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+#mensaje {
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  .barra,
+  .encabezadoPanel {
+    display: block;
+  }
+
+  #seccionAuth,
+  .gridFormulario,
+  .accionesLinea {
+    grid-template-columns: 1fr;
+  }
+}

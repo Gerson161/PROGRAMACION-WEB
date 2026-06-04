@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Biblioteca</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <h1>Biblioteca</h1>
+    <div>
+      <span id="datosUsuario">Sin sesion</span>
+      <button id="btnSalir" class="oculto">Salir</button>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section id="seccionAuth" class="panel">
+      <div>
+        <h2>Registro</h2>
+        <form id="formRegistro">
+          <input name="nombre" placeholder="Nombre" required>
+          <input name="email" type="email" placeholder="Email" required>
+          <input name="password" type="password" placeholder="Password" required>
+          <button type="submit">Registrarse</button>
+        </form>
+      </div>
+      <div>
+        <h2>Login</h2>
+        <form id="formLogin">
+          <input name="email" type="email" placeholder="Email" required>
+          <input name="password" type="password" placeholder="Password" required>
+          <button type="submit">Iniciar sesion</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="seccionSistema" class="oculto">
+      <section class="panel">
+        <div class="encabezadoPanel">
+          <h2>Catalogo de libros</h2>
+          <div class="accionesLinea">
+            <input id="buscarLibro" placeholder="Buscar por titulo">
+            <button id="btnBuscar">Buscar</button>
+            <button id="btnLimpiar">Limpiar</button>
+          </div>
+        </div>
+        <div id="listaLibros" class="tarjetas"></div>
+      </section>
+
+      <section id="panelAdminLibros" class="panel oculto">
+        <h2>Gestionar libros</h2>
+        <form id="formLibro" class="gridFormulario">
+          <input type="hidden" name="id">
+          <input name="titulo" placeholder="Titulo" required>
+          <input name="autor" placeholder="Autor" required>
+          <input name="categoria" placeholder="Categoria" required>
+          <input name="cantidad" type="number" min="0" placeholder="Cantidad" required>
+          <button type="submit">Guardar libro</button>
+          <button type="button" id="btnCancelarLibro">Cancelar</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2 id="tituloPrestamos">Mis prestamos</h2>
+        <div id="listaPrestamos" class="tablaSimple"></div>
+      </section>
+
+      <section id="panelUsuarios" class="panel oculto">
+        <h2>Gestionar usuarios</h2>
+        <form id="formUsuario" class="gridFormulario">
+          <input type="hidden" name="id">
+          <input name="nombre" placeholder="Nombre" required>
+          <input name="email" type="email" placeholder="Email" required>
+          <input name="password" type="password" placeholder="Password nuevo">
+          <select name="rol">
+            <option value="usuario">usuario</option>
+            <option value="admin">admin</option>
+          </select>
+          <button type="submit">Guardar usuario</button>
+          <button type="button" id="btnCancelarUsuario">Cancelar</button>
+        </form>
+        <div id="listaUsuarios" class="tablaSimple"></div>
+      </section>
+    </section>
+
+    <p id="mensaje"></p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
