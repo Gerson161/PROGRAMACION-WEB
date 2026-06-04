@@ -1,22 +1,22 @@
-// pa guardar los datos en el nauegador
+// Guardado de datos en navegador
 const estado = {
   codigoAcceso: localStorage.getItem("codigoAcceso"),
   usuario: JSON.parse(localStorage.getItem("usuario") || "null")
 };
 
-// pa elejir cosas del html mas rapido
+// Manejo de HTML
 const $ = (selector) => document.querySelector(selector);
 const esAdmin = () => estado.usuario?.rol === "admin";
 const datosForm = (form) => Object.fromEntries(new FormData(form));
 const cuerpo = (datos) => ({ body: JSON.stringify(datos) });
 
-// pa mostrar un mesaje ke dsp c borra
+// Mostrar mensaje de manera temporal
 function mensaje(texto) {
   $("#mensaje").textContent = texto;
   setTimeout(() => $("#mensaje").textContent = "", 3500);
 }
 
-// pa pedirle datos al serbidor
+// Petición de datos al servidor
 async function api(ruta, opciones = {}) {
   const respuesta = await fetch(ruta, {
     ...opciones,
@@ -136,7 +136,7 @@ async function cambiarPrestamo(id, accion) {
   cargarLibros();
 }
 
-// pa rellenar el formulario con los datos
+// LLenado de datos en el formulario
 function llenarForm(form, datos) {
   Object.keys(datos).forEach((campo) => {
     if (form[campo]) form[campo].value = datos[campo] ?? "";
