@@ -3,12 +3,14 @@
 }
 
 body {
+  /* fuente arial xq la bida es muy corta pa vuscar otra */
   margin: 0;
   font-family: Arial, sans-serif;
   color: #222;
 }
 
 .barra {
+  /* el encabezado oscurito para parecer hacker */
   display: flex;
   justify-content: space-between;
   padding: 12px 20px;
@@ -85,6 +87,7 @@ button {
 }
 
 .oculto {
+  /* pa' desaparecer cosas como mi dignidad */
   display: none !important;
 }
 
@@ -108,6 +111,7 @@ td {
   font-weight: bold;
 }
 
+/* pa' los celulares de carton de mis amigos */
 @media (max-width: 700px) {
   .barra,
   .encabezadoPanel {
