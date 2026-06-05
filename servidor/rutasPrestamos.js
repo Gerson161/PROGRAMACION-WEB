@@ -5,7 +5,7 @@ const { verificarToken, soloAdmin } = require("./intermediarios");
 
 const router = express.Router();
 
-router.post("/", verificarToken, async (req, res) => {
+const codigoPrestamo = crypto.randomBytes(4).toString("hex").toUpperCase();
   const libro = await Libro.findByPk(req.body.libro_id);
   if (!libro) return res.status(404).json({ mensaje: "Libro no encontrado" });
   if (libro.cantidad <= 0) return res.status(400).json({ mensaje: "No hay ejemplares disponibles" });
@@ -14,7 +14,7 @@ router.post("/", verificarToken, async (req, res) => {
   const prestamo = await Prestamo.create({
     usuario_id: req.usuario.id,
     libro_id: libro.id,
-    codigo,
+    codigo: codigoPrestamo,
     fecha_prestamo: new Date(),
     estado: "pendiente"
   });
@@ -23,9 +23,11 @@ router.post("/", verificarToken, async (req, res) => {
 });
 
 router.get("/", verificarToken, async (req, res) => {
-  const where = req.usuario.rol === "admin" ? {} : { usuario_id: req.usuario.id };
+  const filtroPrestamos = req.usuario.rol === "admin"
+  ? {}
+  : { usuario_id: req.usuario.id };
   const prestamos = await Prestamo.findAll({
-    where,
+    where: filtroPrestamos,
     include: [
       { model: Usuario, attributes: ["id", "nombre", "correo"] },
       { model: Libro, attributes: ["id", "titulo", "autor"] }
@@ -48,7 +50,7 @@ router.put("/:id/aprobar", verificarToken, soloAdmin, async (req, res) => {
   res.json({ mensaje: "Prestamo aprobado", prestamo });
 });
 
-router.put("/:id/devolver", verificarToken, soloAdmin, async (req, res) => {
+res.json({ mensaje: "Solicitud de prestamo aprobada", prestamo });
   const prestamo = await Prestamo.findByPk(req.params.id);
   if (!prestamo) return res.status(404).json({ mensaje: "Prestamo no encontrado" });
   if (prestamo.estado === "devuelto") return res.status(400).json({ mensaje: "El prestamo ya fue devuelto" });
@@ -59,7 +61,7 @@ router.put("/:id/devolver", verificarToken, soloAdmin, async (req, res) => {
   }
 
   await prestamo.update({ estado: "devuelto", fecha_devolucion: new Date() });
-  res.json({ mensaje: "Devolucion registrada", prestamo });
+  res.json({ mensaje: "Devolucion registrada correctamente", prestamo });
 });
 
 module.exports = router;
