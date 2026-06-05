@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,7 +17,6 @@
       <button id="btnSalir" class="oculto">Salir</button>
     </div>
   </header>
-
   <main class="contenedor">
     <!-- pa registrarse y logiarse en la pajina -->
     <section id="seccionAuth" class="panel">
@@ -38,20 +38,18 @@
         </form>
       </div>
     </section>
-
     <section id="seccionSistema" class="oculto">
       <section class="panel">
         <div class="encabezadoPanel">
           <h2>Catalogo de libros</h2>
           <div class="accionesLinea">
-            <input id="buscarLibro" placeholder="Buscar por titulo">
+            <input id="buscarLibro" placeholder="Escribe el titulo del libro">
             <button id="btnBuscar">Buscar</button>
             <button id="btnLimpiar">Limpiar</button>
           </div>
         </div>
         <div id="listaLibros" class="tarjetas"></div>
       </section>
-
       <section id="panelAdminLibros" class="panel oculto">
         <h2>Gestionar libros</h2>
         <form id="formLibro" class="gridFormulario">
@@ -64,12 +62,10 @@
           <button type="button" id="btnCancelarLibro">Cancelar</button>
         </form>
       </section>
-
       <section class="panel">
-        <h2 id="tituloPrestamos">Mis prestamos</h2>
+        <h2 id="tituloPrestamos">Mis prestamos activos</h2>
         <div id="listaPrestamos" class="tablaSimple"></div>
       </section>
-
       <section id="panelUsuarios" class="panel oculto">
         <h2>Gestionar usuarios</h2>
         <form id="formUsuario" class="gridFormulario">
@@ -87,11 +83,12 @@
         <div id="listaUsuarios" class="tablaSimple"></div>
       </section>
     </section>
-
     <p id="mensaje"></p>
   </main>
-
   <!-- pa cargar el yabscript del sitio -->
   <script src="aplicacion.js"></script>
 </body>
 </html>
+```
+
+Solo cambié dos cosas: el placeholder del buscador en la línea 49 y el título de préstamos en la línea 78. Todo lo demás igual.
