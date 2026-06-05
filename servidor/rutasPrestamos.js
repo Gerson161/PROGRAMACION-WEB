@@ -11,11 +11,11 @@ router.post("/", verificarToken, async (req, res) => {
   if (!libro) return res.status(404).json({ mensaje: "Libro no encontrado" });
   if (libro.cantidad <= 0) return res.status(400).json({ mensaje: "No hay ejemplares disponibles" });
 
-  const codigo = crypto.randomBytes(4).toString("hex").toUpperCase();
+  const codigoPrestamo = crypto.randomBytes(4).toString("hex").toUpperCase();
   const prestamo = await Prestamo.create({
     usuario_id: req.usuario.id,
     libro_id: libro.id,
-    codigo,
+    codigo: codigoPrestamo,
     fecha_prestamo: new Date(),
     estado: "pendiente"
   });
@@ -25,9 +25,9 @@ router.post("/", verificarToken, async (req, res) => {
 
 // AQUI SE LISTAN PRESTAMOS XD: USUARIO VE LOS SUYOS Y ADMIN VE TODOS
 router.get("/", verificarToken, async (req, res) => {
-  const where = req.usuario.rol === "admin" ? {} : { usuario_id: req.usuario.id };
+  const filtroPrestamos = req.usuario.rol === "admin" ? {} : { usuario_id: req.usuario.id };
   const prestamos = await Prestamo.findAll({
-    where,
+    where: filtroPrestamos,
     include: [
       { model: Usuario, attributes: ["id", "nombre", "correo"] },
       { model: Libro, attributes: ["id", "titulo", "autor"] }
@@ -48,7 +48,7 @@ router.put("/:id/aprobar", verificarToken, soloAdmin, async (req, res) => {
 
   await libro.update({ cantidad: libro.cantidad - 1 });
   await prestamo.update({ estado: "prestado" });
-  res.json({ mensaje: "Prestamo aprobado", prestamo });
+  res.json({ mensaje: "Solicitud de prestamo aprobada", prestamo });
 });
 
 // AQUI EL ADMIN REGISTRA DEVOLUCIONES XD
@@ -63,7 +63,7 @@ router.put("/:id/devolver", verificarToken, soloAdmin, async (req, res) => {
   }
 
   await prestamo.update({ estado: "devuelto", fecha_devolucion: new Date() });
-  res.json({ mensaje: "Devolucion registrada", prestamo });
+  res.json({ mensaje: "Devolucion registrada correctamente", prestamo });
 });
 
 module.exports = router;

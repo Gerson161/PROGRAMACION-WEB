@@ -3,14 +3,14 @@
 }
 
 body {
-  /* Diseño visual de fuente */
+  /* Diseno visual de fuente */
   margin: 0;
   font-family: Verdana;
   color: #222222;
 }
 
 .barra {
-  /* Diseño de barra superior */
+  /* Diseno de barra superior */
   display: flex;
   justify-content: space-between;
   padding: 12px 20px;
@@ -53,8 +53,17 @@ body {
 }
 
 .tarjeta {
-  border: 1px solid #ccc;
-  padding: 10px;
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 /* AQUI TERMINAN LAS TARJETAS DEL CATALOGO XD */
 
@@ -72,6 +81,19 @@ form,
 /* AQUI VAN LOS BOTONES DE CADA LIBRO XD: PRESTAR, EDITAR, ELIMINAR */
 .accionesTarjeta {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.accionesTarjeta button {
+  border: none;
+  border-radius: 6px;
+  background: #333;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.accionesTarjeta button:hover {
+  background: #555;
 }
 /* AQUI TERMINAN LOS BOTONES DE CADA LIBRO XD */
 
@@ -100,16 +122,39 @@ button {
 .tablaSimple {
   overflow-x: auto;
 }
+
 /* AQUI VAN LAS TABLAS DE PRESTAMOS Y USUARIOS XD */
 table {
   width: 100%;
   border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+th {
+  background: #333;
+  color: white;
+  padding: 12px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+tr:hover {
+  background: #ececec;
 }
 
 th,
 td {
   border: 1px solid #ccc;
-  padding: 8px;
   text-align: left;
 }
 /* AQUI TERMINAN LAS TABLAS DE PRESTAMOS Y USUARIOS XD */
@@ -118,7 +163,7 @@ td {
   font-weight: bold;
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
   .barra,
   .encabezadoPanel {
     display: block;

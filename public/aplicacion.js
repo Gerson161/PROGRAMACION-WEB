@@ -132,14 +132,14 @@ function tabla(selector, columnas, filas) {
 // AQUI EL USUARIO PIDE UN LIBRO PRESTADO XD
 async function solicitarPrestamo(libroId) {
   await api("/prestamos", { method: "POST", ...cuerpo({ libro_id: libroId }) });
-  mensaje("Prestamo solicitado");
+  mensaje("Prestamo solicitado correctamente");
   cargarPrestamos();
 }
 
 // AQUI EL ADMIN APRUEBA PRESTAMOS O LOS MARCA COMO DEVUELTOS XD
 async function cambiarPrestamo(id, accion) {
   await api(`/prestamos/${id}/${accion}`, { method: "PUT" });
-  mensaje(accion === "aprobar" ? "Prestamo aprobado" : "Devolucion registrada");
+  mensaje(accion === "aprobar" ? "Prestamo aprobado correctamente" : "Devolucion registrada correctamente");
   cargarPrestamos();
   cargarLibros();
 }
@@ -173,15 +173,15 @@ async function eliminar(ruta, texto, despues) {
   despues();
 }
 
-const eliminarLibro = (id) => eliminar(`/libros/${id}`, "Desea eliminar este libro?", cargarLibros);
-const eliminarUsuario = (id) => eliminar(`/usuarios/${id}`, "Desea eliminar este usuario?", cargarUsuarios);
+const eliminarLibro = (id) => eliminar(`/libros/${id}`, "Esta seguro que desea eliminar este libro?", cargarLibros);
+const eliminarUsuario = (id) => eliminar(`/usuarios/${id}`, "Esta seguro que desea eliminar este usuario?", cargarUsuarios);
 
 // INICIO DE LA LOGICA DEL REGISTRO DE USUARIOS
 $("#formRegistro").addEventListener("submit", (e) => intentar(async () => {
   e.preventDefault();
   await api("/autenticacion/registro", { method: "POST", ...cuerpo(datosForm(e.target)) });
   e.target.reset();
-  mensaje("Registro correcto, ahora puede iniciar sesion");
+  mensaje("Registro exitoso, ahora puede iniciar sesion");
 }));
 // FIN DE LA LOGICA DEL REGISTRO DE USUARIOS
 
