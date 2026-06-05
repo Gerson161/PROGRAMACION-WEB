@@ -19,25 +19,49 @@
   </header>
   <main class="contenedor">
     <!-- pa registrarse y logiarse en la pajina -->
-    <section id="seccionAuth" class="panel">
-      <div>
-        <h2>Registro</h2>
-        <form id="formRegistro">
-          <input name="nombre" placeholder="Nombre" required>
-          <input name="correo" type="email" placeholder="Correo" required>
-          <input name="contrasena" type="password" placeholder="Contrasena" required>
-          <button type="submit">Registrarse</button>
-        </form>
+<section id="seccionAuth">
+  <div class="auth-wrap">
+    <div class="auth-logo">
+      <span class="auth-logo-icon">&#9645;</span>
+      <span class="auth-logo-text">Biblioteca</span>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab activo" id="tabIngreso" onclick="mostrarTab('ingreso')">Ingresar</button>
+      <button class="auth-tab" id="tabRegistro" onclick="mostrarTab('registro')">Registrarse</button>
+    </div>
+
+    <form id="formIngreso" class="auth-form">
+      <div class="auth-campo">
+        <label>Correo</label>
+        <input name="correo" type="email" placeholder="correo@ejemplo.com" required>
       </div>
-      <div>
-        <h2>Ingreso</h2>
-        <form id="formIngreso">
-          <input name="correo" type="email" placeholder="Correo" required>
-          <input name="contrasena" type="password" placeholder="Contrasena" required>
-          <button type="submit">Iniciar sesion</button>
-        </form>
+      <div class="auth-campo">
+        <label>Contraseña</label>
+        <input name="contrasena" type="password" placeholder="••••••••" required>
       </div>
-    </section>
+      <button type="submit" class="auth-btn">Iniciar sesión</button>
+    </form>
+
+    <form id="formRegistro" class="auth-form oculto">
+      <div class="auth-campo">
+        <label>Nombre</label>
+        <input name="nombre" placeholder="Tu nombre" required>
+      </div>
+      <div class="auth-campo">
+        <label>Correo</label>
+        <input name="correo" type="email" placeholder="correo@ejemplo.com" required>
+      </div>
+      <div class="auth-campo">
+        <label>Contraseña</label>
+        <input name="contrasena" type="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="auth-btn">Crear cuenta</button>
+    </form>
+
+    <p id="mensaje" class="auth-mensaje"></p>
+  </div>
+</section>
     <section id="seccionSistema" class="oculto">
       <section class="panel">
         <div class="encabezadoPanel">
