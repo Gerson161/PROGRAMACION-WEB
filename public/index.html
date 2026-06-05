@@ -1,132 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema de Biblioteca</title>
-  <!-- pa cargar los estilos xq sino c ve feo -->
-  <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Biblioteca</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
+
 <body>
-  <!-- pa mostrar el titulo de la varra -->
-  <header class="barra">
-    <h1>Biblioteca</h1>
-    <div>
-      <span id="datosUsuario">Sin sesion</span>
-      <button id="btnSalir" class="oculto">Salir</button>
-    </div>
-  </header>
-
-  <main class="contenedor">
-    <!-- AQUI EMPIEZA EL LOGIN Y REGISTRO NUEVO XD: LO TRAJERON DEL REPO -->
-    <section id="seccionAuth">
-      <div class="auth-wrap">
-        <div class="auth-logo">
-          <span class="auth-logo-icon">&#9645;</span>
-          <span class="auth-logo-text">Biblioteca</span>
+    <header class="barra">
+        <h1>Biblioteca</h1>
+        <div>
+            <span id="datosUsuario">Sin sesion</span>
+            <button id="btnSalir" class="oculto">Salir</button>
         </div>
+    </header>
 
-        <div class="auth-tabs">
-          <button class="auth-tab activo" id="tabIngreso" onclick="mostrarTab('ingreso')">Ingresar</button>
-          <button class="auth-tab" id="tabRegistro" onclick="mostrarTab('registro')">Registrarse</button>
-        </div>
+    <main class="contenedor">
+        <section id="seccionAuth">
+            <div class="auth-wrap">
+                <div class="auth-logo">
+                    <span class="auth-logo-icon">&#9645;</span>
+                    <span class="auth-logo-text">Biblioteca</span>
+                </div>
 
-        <!-- AQUI VA EL FORMULARIO DE INGRESO / LOGIN XD -->
-        <form id="formIngreso" class="auth-form">
-          <div class="auth-campo">
-            <label>Correo</label>
-            <input name="correo" type="email" placeholder="correo@ejemplo.com" required>
-          </div>
-          <div class="auth-campo">
-            <label>Contrasena</label>
-            <input name="contrasena" type="password" placeholder="********" required>
-          </div>
-          <button type="submit" class="auth-btn">Iniciar sesion</button>
-        </form>
+                <div class="auth-tabs">
+                    <button class="auth-tab activo" id="tabIngreso" onclick="mostrarTab('ingreso')">Ingresar</button>
+                    <button class="auth-tab" id="tabRegistro" onclick="mostrarTab('registro')">Registrarse</button>
+                </div>
 
-        <!-- AQUI VA EL FORMULARIO DE REGISTRO XD -->
-        <form id="formRegistro" class="auth-form oculto">
-          <div class="auth-campo">
-            <label>Nombre</label>
-            <input name="nombre" placeholder="Tu nombre" required>
-          </div>
-          <div class="auth-campo">
-            <label>Correo</label>
-            <input name="correo" type="email" placeholder="correo@ejemplo.com" required>
-          </div>
-          <div class="auth-campo">
-            <label>Contrasena</label>
-            <input name="contrasena" type="password" placeholder="********" required>
-          </div>
-          <button type="submit" class="auth-btn">Crear cuenta</button>
-        </form>
+                <!-- login-->
+                <form id="formIngreso" class="auth-form">
+                    <div class="auth-campo">
+                        <label>Correo</label>
+                        <input name="correo" type="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="auth-campo">
+                        <label>Contrasena</label>
+                        <input name="contrasena" type="password" placeholder="********" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Iniciar sesion</button>
+                </form>
 
-        <p id="mensaje" class="auth-mensaje"></p>
-      </div>
-    </section>
-    <!-- AQUI TERMINA EL LOGIN Y REGISTRO NUEVO XD -->
+                <!-- rtegistro -->
+                <form id="formRegistro" class="auth-form oculto">
+                    <div class="auth-campo">
+                        <label>Nombre</label>
+                        <input name="nombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="auth-campo">
+                        <label>Correo</label>
+                        <input name="correo" type="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    <div class="auth-campo">
+                        <label>Contrasena</label>
+                        <input name="contrasena" type="password" placeholder="********" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Crear cuenta</button>
+                </form>
 
-    <!-- AQUI EMPIEZA LA BIBLIOTECA YA LOGEADO XD: TODO LO QUE VE USUARIO Y ADMIN -->
-    <section id="seccionSistema" class="oculto">
-      <!-- AQUI VA EL CATALOGO DE LIBROS XD: ESTO LO VE EL USUARIO Y TAMBIEN EL ADMIN -->
-      <section class="panel">
-        <div class="encabezadoPanel">
-          <h2>Catalogo de libros</h2>
-          <div class="accionesLinea">
-            <input id="buscarLibro" placeholder="Escribe el titulo del libro">
-            <button id="btnBuscar">Buscar</button>
-            <button id="btnLimpiar">Limpiar</button>
-          </div>
-        </div>
-        <div id="listaLibros" class="tarjetas"></div>
-      </section>
-      <!-- AQUI TERMINA EL CATALOGO DE LIBROS XD -->
+                <p id="mensaje" class="auth-mensaje"></p>
+            </div>
+        </section>
+        <!-- fin -->
 
-      <!-- AQUI EMPIEZA LO DE ADMIN PARA CREAR O EDITAR LIBROS XD -->
-      <section id="panelAdminLibros" class="panel oculto">
-        <h2>Gestionar libros</h2>
-        <form id="formLibro" class="gridFormulario">
-          <input type="hidden" name="id">
-          <input name="titulo" placeholder="Titulo" required>
-          <input name="autor" placeholder="Autor" required>
-          <input name="categoria" placeholder="Categoria" required>
-          <input name="cantidad" type="number" min="0" placeholder="Cantidad" required>
-          <button type="submit">Guardar libro</button>
-          <button type="button" id="btnCancelarLibro">Cancelar</button>
-        </form>
-      </section>
-      <!-- AQUI TERMINA LO DE ADMIN PARA CREAR O EDITAR LIBROS XD -->
+        <!-- biblio -->
+        <section id="seccionSistema" class="oculto">
+            <!--libros -->
+            <section class="panel">
+                <div class="encabezadoPanel">
+                    <h2>Catalogo de libros</h2>
+                    <div class="accionesLinea">
+                        <input id="buscarLibro" placeholder="Escribe el titulo del libro">
+                        <button id="btnBuscar">Buscar</button>
+                        <button id="btnLimpiar">Limpiar</button>
+                    </div>
+                </div>
+                <div id="listaLibros" class="tarjetas"></div>
+            </section>
 
-      <!-- AQUI VAN LOS PRESTAMOS XD: USUARIO VE LOS SUYOS Y ADMIN VE TODOS -->
-      <section class="panel">
-        <h2 id="tituloPrestamos">Mis prestamos activos</h2>
-        <div id="listaPrestamos" class="tablaSimple"></div>
-      </section>
-      <!-- AQUI TERMINA LA TABLA DE PRESTAMOS XD -->
+            <!-- crear libr -->
+            <section id="panelAdminLibros" class="panel oculto">
+                <h2>Gestionar libros</h2>
+                <form id="formLibro" class="gridFormulario">
+                    <input type="hidden" name="id">
+                    <input name="titulo" placeholder="Titulo" required>
+                    <input name="autor" placeholder="Autor" required>
+                    <input name="categoria" placeholder="Categoria" required>
+                    <input name="cantidad" type="number" min="0" placeholder="Cantidad" required>
+                    <button type="submit">Guardar libro</button>
+                    <button type="button" id="btnCancelarLibro">Cancelar</button>
+                </form>
+            </section>
 
-      <!-- AQUI EMPIEZA LO DE ADMIN PARA MANEJAR USUARIOS XD -->
-      <section id="panelUsuarios" class="panel oculto">
-        <h2>Gestionar usuarios</h2>
-        <form id="formUsuario" class="gridFormulario">
-          <input type="hidden" name="id">
-          <input name="nombre" placeholder="Nombre" required>
-          <input name="correo" type="email" placeholder="Correo" required>
-          <input name="contrasena" type="password" placeholder="Contrasena nueva">
-          <select name="rol">
+            <!-- prestamos -->
+            <section class="panel">
+                <h2 id="tituloPrestamos">Mis prestamos activos</h2>
+                <div id="listaPrestamos" class="tablaSimple"></div>
+            </section>
+
+            <!-- admin y usuarios-->
+            <section id="panelUsuarios" class="panel oculto">
+                <h2>Gestionar usuarios</h2>
+                <form id="formUsuario" class="gridFormulario">
+                    <input type="hidden" name="id">
+                    <input name="nombre" placeholder="Nombre" required>
+                    <input name="correo" type="email" placeholder="Correo" required>
+                    <input name="contrasena" type="password" placeholder="Contrasena nueva">
+                    <select name="rol">
             <option value="usuario">usuario</option>
             <option value="admin">admin</option>
           </select>
-          <button type="submit">Guardar usuario</button>
-          <button type="button" id="btnCancelarUsuario">Cancelar</button>
-        </form>
-        <div id="listaUsuarios" class="tablaSimple"></div>
-      </section>
-      <!-- AQUI TERMINA LO DE ADMIN PARA MANEJAR USUARIOS XD -->
-    </section>
-    <!-- AQUI TERMINA LA BIBLIOTECA YA LOGEADO XD -->
-  </main>
+                    <button type="submit">Guardar usuario</button>
+                    <button type="button" id="btnCancelarUsuario">Cancelar</button>
+                </form>
+                <div id="listaUsuarios" class="tablaSimple"></div>
+            </section>
+        </section>
+    </main>
 
-  <!-- pa cargar el yabscript del sitio -->
-  <script src="aplicacion.js"></script>
+    <!-- pa cargar el yabscript del sitio -->
+    <script src="aplicacion.js"></script>
 </body>
+
 </html>

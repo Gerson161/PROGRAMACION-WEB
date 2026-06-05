@@ -1,310 +1,326 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  /* Diseno visual de fuente */
-  margin: 0;
-  font-family: Verdana;
-  color: #222222;
+    margin: 0;
+    font-family: Verdana;
+    color: #222222;
 }
 
 .barra {
-  /* Diseno de barra superior */
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 20px;
-  background: #333;
-  color: white;
+    /* diseño de barra superior */
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #333;
+    color: white;
 }
 
 .contenedor {
-  max-width: 1000px;
-  margin: 20px auto;
-  padding: 0 12px;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 12px;
 }
 
 .panel {
-  border: 1px solid #ccc;
-  padding: 14px;
-  margin-bottom: 14px;
+    border: 1px solid #ccc;
+    padding: 14px;
+    margin-bottom: 14px;
 }
 
+
 /* INICIO DE ESTILOS DEL APARTADO DE REGISTRO E INGRESO */
+
 #seccionAuth,
 .gridFormulario,
 .tarjetas {
-  display: grid;
-  gap: 12px;
+    display: grid;
+    gap: 12px;
 }
 
 #seccionAuth {
-  grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
+
+
 /* FIN DE ESTILOS DEL APARTADO DE REGISTRO E INGRESO */
 
 .gridFormulario {
-  grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
+
 /* AQUI SE ACOMODAN LAS TARJETAS DEL CATALOGO DE LIBROS XD */
+
 .tarjetas {
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 .tarjeta {
-  border: none;
-  padding: 15px;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tarjeta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
+
+
 /* AQUI TERMINAN LAS TARJETAS DEL CATALOGO XD */
 
 form,
 .accionesLinea,
 .accionesTarjeta {
-  display: grid;
-  gap: 8px;
+    display: grid;
+    gap: 8px;
 }
 
 .accionesLinea {
-  grid-template-columns: 1fr 90px 90px;
+    grid-template-columns: 1fr 90px 90px;
 }
 
+
 /* AQUI VAN LOS BOTONES DE CADA LIBRO XD: PRESTAR, EDITAR, ELIMINAR */
+
 .accionesTarjeta {
-  grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .accionesTarjeta button {
-  border: none;
-  border-radius: 6px;
-  background: #333;
-  color: white;
-  font-weight: bold;
-  transition: background 0.2s ease;
+    border: none;
+    border-radius: 6px;
+    background: #333;
+    color: white;
+    font-weight: bold;
+    transition: background 0.2s ease;
 }
 
 .accionesTarjeta button:hover {
-  background: #555;
+    background: #555;
 }
+
+
 /* AQUI TERMINAN LOS BOTONES DE CADA LIBRO XD */
 
 input,
 select,
 button {
-  width: 100%;
-  padding: 10px;
+    width: 100%;
+    padding: 10px;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .encabezadoPanel {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .oculto {
-  /* pa ocultar los vatones y paneles */
-  display: none !important;
+    /* pa ocultar los vatones y paneles */
+    display: none !important;
 }
 
 .tablaSimple {
-  overflow-x: auto;
+    overflow-x: auto;
 }
 
+
 /* AQUI VAN LAS TABLAS DE PRESTAMOS Y USUARIOS XD */
+
 table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 th {
-  background: #333;
-  color: white;
-  padding: 12px;
+    background: #333;
+    color: white;
+    padding: 12px;
 }
 
 td {
-  padding: 10px;
-  border-bottom: 1px solid #e0e0e0;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 tr:nth-child(even) {
-  background: #f8f8f8;
+    background: #f8f8f8;
 }
 
 tr:hover {
-  background: #ececec;
+    background: #ececec;
 }
 
 th,
 td {
-  border: 1px solid #ccc;
-  text-align: left;
+    border: 1px solid #ccc;
+    text-align: left;
 }
+
+
 /* AQUI TERMINAN LAS TABLAS DE PRESTAMOS Y USUARIOS XD */
 
 #mensaje {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {
-  .barra,
-  .encabezadoPanel {
-    display: block;
-    margin-bottom: 15px;
-  }
-
-  /* INICIO DE ESTILOS RESPONSIVE DEL REGISTRO E INGRESO */
-  #seccionAuth,
-  .gridFormulario,
-  .accionesLinea {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  /* FIN DE ESTILOS RESPONSIVE DEL REGISTRO E INGRESO */
-
-  .gridFormulario > *,
-  .accionesLinea > * {
-    margin-bottom: 8px;
-  }
+    .barra,
+    .encabezadoPanel {
+        display: block;
+        margin-bottom: 15px;
+    }
+    /* INICIO DE ESTILOS RESPONSIVE DEL REGISTRO E INGRESO */
+    #seccionAuth,
+    .gridFormulario,
+    .accionesLinea {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    /* FIN DE ESTILOS RESPONSIVE DEL REGISTRO E INGRESO */
+    .gridFormulario>*,
+    .accionesLinea>* {
+        margin-bottom: 8px;
+    }
 }
+
+
 /* ── Auth ── */
+
 #seccionAuth {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 48px 16px;
-  min-height: 100vh;
-  background: #f5f5f3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 16px;
+    min-height: 100vh;
+    background: #f5f5f3;
 }
 
 .auth-wrap {
-  width: 100%;
-  max-width: 380px;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 36px 32px 28px;
+    width: 100%;
+    max-width: 380px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 36px 32px 28px;
 }
 
 .auth-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 28px;
 }
 
 .auth-logo-icon {
-  font-size: 22px;
-  color: #333;
+    font-size: 22px;
+    color: #333;
 }
 
 .auth-logo-text {
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: #111;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #111;
 }
 
 .auth-tabs {
-  display: flex;
-  border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 24px;
+    display: flex;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 24px;
 }
 
 .auth-tab {
-  flex: 1;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  padding: 8px 0;
-  font-size: 14px;
-  color: #888;
-  cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
-  width: auto;
+    flex: 1;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    width: auto;
 }
 
 .auth-tab.activo {
-  color: #111;
-  border-bottom-color: #111;
+    color: #111;
+    border-bottom-color: #111;
 }
 
 .auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .auth-campo {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .auth-campo label {
-  font-size: 13px;
-  color: #555;
+    font-size: 13px;
+    color: #555;
 }
 
 .auth-campo input {
-  padding: 9px 12px;
-  font-size: 14px;
-  border: 1px solid #d8d8d8;
-  border-radius: 7px;
-  outline: none;
-  transition: border-color 0.15s;
-  color: #111;
-  background: #fafafa;
+    padding: 9px 12px;
+    font-size: 14px;
+    border: 1px solid #d8d8d8;
+    border-radius: 7px;
+    outline: none;
+    transition: border-color 0.15s;
+    color: #111;
+    background: #fafafa;
 }
 
 .auth-campo input:focus {
-  border-color: #555;
-  background: #fff;
+    border-color: #555;
+    background: #fff;
 }
 
 .auth-btn {
-  margin-top: 4px;
-  padding: 10px;
-  background: #111;
-  color: #fff;
-  border: none;
-  border-radius: 7px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.15s;
+    margin-top: 4px;
+    padding: 10px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
 }
 
 .auth-btn:hover {
-  background: #333;
+    background: #333;
 }
 
 .auth-mensaje {
-  margin-top: 14px;
-  font-size: 13px;
-  text-align: center;
-  color: #c0392b;
-  min-height: 18px;
+    margin-top: 14px;
+    font-size: 13px;
+    text-align: center;
+    color: #c0392b;
+    min-height: 18px;
 }
 
 @media (max-width: 768px) {
-  .auth-wrap {
-    padding: 28px 20px 22px;
-  }
+    .auth-wrap {
+        padding: 28px 20px 22px;
+    }
 }
