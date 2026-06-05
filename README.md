@@ -1,0 +1,1 @@
+Como se puede ver el Coloborador Gerson tiene mas de 4000 mil lineas de aporte y no es por que es lo haya echo todo, es por que en un inicio todos trabajamos en una sola computadora, y lo enviamos desde la cuenta de "GERSON".
