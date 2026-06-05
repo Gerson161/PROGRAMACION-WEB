@@ -15,7 +15,7 @@ router.get("/", verificarToken, async (req, res) => {
 router.post("/", verificarToken, soloAdmin, async (req, res) => {
   const { titulo, autor, categoria, cantidad } = req.body;
   const libro = await Libro.create({ titulo, autor, categoria, cantidad });
-  res.status(201).json({ mensaje: "Libro creado", libro });
+ res.status(201).json({ mensaje: "Libro registrado correctamente", libro });
 });
 
 router.put("/:id", verificarToken, soloAdmin, async (req, res) => {
@@ -23,7 +23,7 @@ router.put("/:id", verificarToken, soloAdmin, async (req, res) => {
   if (!libro) return res.status(404).json({ mensaje: "Libro no encontrado" });
 
   await libro.update(req.body);
-  res.json({ mensaje: "Libro actualizado", libro });
+  res.json({ mensaje: "Libro actualizado correctamente", libro });
 });
 
 router.delete("/:id", verificarToken, soloAdmin, async (req, res) => {
@@ -31,7 +31,7 @@ router.delete("/:id", verificarToken, soloAdmin, async (req, res) => {
   if (!libro) return res.status(404).json({ mensaje: "Libro no encontrado" });
 
   await libro.destroy();
-  res.json({ mensaje: "Libro eliminado" });
+  res.json({ mensaje: "Libro eliminado correctamente" });
 });
 
 module.exports = router;
