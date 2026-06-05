@@ -5,6 +5,7 @@ const { verificarToken, soloAdmin } = require("./intermediarios");
 
 const router = express.Router();
 
+// AQUI EL ADMIN VE LA LISTA DE USUARIOS XD
 router.get("/", verificarToken, soloAdmin, async (req, res) => {
   const usuarios = await Usuario.findAll({
     attributes: ["id", "nombre", "correo", "rol"],
@@ -13,6 +14,7 @@ router.get("/", verificarToken, soloAdmin, async (req, res) => {
   res.json(usuarios);
 });
 
+// AQUI EL ADMIN CREA USUARIOS XD
 router.post("/", verificarToken, soloAdmin, async (req, res) => {
   const { nombre, correo, contrasena, rol } = req.body;
   const contrasenaEncriptada = await bcrypt.hash(contrasena, 10);
@@ -20,6 +22,7 @@ router.post("/", verificarToken, soloAdmin, async (req, res) => {
   res.status(201).json({ mensaje: "Usuario creado", usuario: { id: usuario.id, nombre, correo, rol } });
 });
 
+// AQUI EL ADMIN EDITA USUARIOS XD
 router.put("/:id", verificarToken, soloAdmin, async (req, res) => {
   const usuario = await Usuario.findByPk(req.params.id);
   if (!usuario) return res.status(404).json({ mensaje: "Usuario no encontrado" });
@@ -32,6 +35,7 @@ router.put("/:id", verificarToken, soloAdmin, async (req, res) => {
   res.json({ mensaje: "Usuario actualizado" });
 });
 
+// AQUI EL ADMIN ELIMINA USUARIOS XD
 router.delete("/:id", verificarToken, soloAdmin, async (req, res) => {
   const usuario = await Usuario.findByPk(req.params.id);
   if (!usuario) return res.status(404).json({ mensaje: "Usuario no encontrado" });

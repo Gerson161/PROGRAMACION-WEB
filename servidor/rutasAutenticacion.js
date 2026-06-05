@@ -6,6 +6,7 @@ const { secretoSesion } = require("./configuracion");
 
 const router = express.Router();
 
+// INICIO DE LA RUTA BACKEND PARA REGISTRO DE USUARIOS
 router.post("/registro", async (req, res) => {
   try {
     const { nombre, correo, contrasena } = req.body;
@@ -32,7 +33,9 @@ router.post("/registro", async (req, res) => {
     res.status(500).json({ mensaje: "Error al registrar usuario" });
   }
 });
+// FIN DE LA RUTA BACKEND PARA REGISTRO DE USUARIOS
 
+// INICIO DE LA RUTA BACKEND PARA INGRESO / LOGIN
 router.post("/ingreso", async (req, res) => {
   try {
     const { correo, contrasena } = req.body;
@@ -62,5 +65,6 @@ router.post("/ingreso", async (req, res) => {
     res.status(500).json({ mensaje: "Error al iniciar sesion" });
   }
 });
+// FIN DE LA RUTA BACKEND PARA INGRESO / LOGIN
 
 module.exports = router;

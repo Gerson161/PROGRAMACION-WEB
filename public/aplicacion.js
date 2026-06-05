@@ -73,6 +73,7 @@ function cargarTodo() {
   if (esAdmin()) cargarUsuarios();
 }
 
+// AQUI CARGA EL CATALOGO DE LIBROS XD: LO VE USUARIO Y ADMIN
 async function cargarLibros() {
   const buscar = encodeURIComponent($("#buscarLibro").value.trim());
   const libros = await api(`/libros${buscar ? `?buscar=${buscar}` : ""}`);
@@ -88,7 +89,9 @@ async function cargarLibros() {
       </div>
     </article>`).join("");
 }
+// AQUI TERMINA LO DEL CATALOGO XD
 
+// AQUI CARGA LOS PRESTAMOS XD: USUARIO VE LOS SUYOS Y ADMIN VE TODO
 async function cargarPrestamos() {
   const prestamos = await api("/prestamos");
   const accion = (p) => p.estado === "pendiente"
@@ -105,7 +108,9 @@ async function cargarPrestamos() {
     ])
   );
 }
+// AQUI TERMINA LO DE MOSTRAR PRESTAMOS XD
 
+// AQUI CARGA LOS USUARIOS XD: SOLO LE SALE AL ADMIN
 async function cargarUsuarios() {
   const usuarios = await api("/usuarios");
   tabla("#listaUsuarios", ["Nombre", "Correo", "Rol", "Acciones"], usuarios.map((u) => [
@@ -114,6 +119,7 @@ async function cargarUsuarios() {
      <button onclick="eliminarUsuario(${u.id})">Eliminar</button>`
   ]));
 }
+// AQUI TERMINA LO DE USUARIOS DEL ADMIN XD
 
 function tabla(selector, columnas, filas) {
   $(selector).innerHTML = `
@@ -123,12 +129,14 @@ function tabla(selector, columnas, filas) {
     </table>`;
 }
 
+// AQUI EL USUARIO PIDE UN LIBRO PRESTADO XD
 async function solicitarPrestamo(libroId) {
   await api("/prestamos", { method: "POST", ...cuerpo({ libro_id: libroId }) });
   mensaje("Prestamo solicitado");
   cargarPrestamos();
 }
 
+// AQUI EL ADMIN APRUEBA PRESTAMOS O LOS MARCA COMO DEVUELTOS XD
 async function cambiarPrestamo(id, accion) {
   await api(`/prestamos/${id}/${accion}`, { method: "PUT" });
   mensaje(accion === "aprobar" ? "Prestamo aprobado" : "Devolucion registrada");
@@ -143,10 +151,12 @@ function llenarForm(form, datos) {
   });
 }
 
+// AQUI EL ADMIN CARGA UN LIBRO EN EL FORMULARIO PARA EDITARLO XD
 function editarLibro(libro) {
   llenarForm($("#formLibro"), libro);
 }
 
+// AQUI EL ADMIN CARGA UN USUARIO EN EL FORMULARIO PARA EDITARLO XD
 function editarUsuario(usuario) {
   llenarForm($("#formUsuario"), { ...usuario, contrasena: "" });
 }
@@ -166,18 +176,23 @@ async function eliminar(ruta, texto, despues) {
 const eliminarLibro = (id) => eliminar(`/libros/${id}`, "Desea eliminar este libro?", cargarLibros);
 const eliminarUsuario = (id) => eliminar(`/usuarios/${id}`, "Desea eliminar este usuario?", cargarUsuarios);
 
+// INICIO DE LA LOGICA DEL REGISTRO DE USUARIOS
 $("#formRegistro").addEventListener("submit", (e) => intentar(async () => {
   e.preventDefault();
   await api("/autenticacion/registro", { method: "POST", ...cuerpo(datosForm(e.target)) });
   e.target.reset();
   mensaje("Registro correcto, ahora puede iniciar sesion");
 }));
+// FIN DE LA LOGICA DEL REGISTRO DE USUARIOS
 
+// INICIO DE LA LOGICA DEL INGRESO / LOGIN
 $("#formIngreso").addEventListener("submit", (e) => intentar(async () => {
   e.preventDefault();
   guardarSesion(await api("/autenticacion/ingreso", { method: "POST", ...cuerpo(datosForm(e.target)) }));
 }));
+// FIN DE LA LOGICA DEL INGRESO / LOGIN
 
+// AQUI EL ADMIN GUARDA LIBROS XD: SI TIENE ID EDITA, SI NO TIENE ID CREA
 $("#formLibro").addEventListener("submit", (e) => intentar(async () => {
   e.preventDefault();
   const datos = datosForm(e.target);
@@ -187,7 +202,9 @@ $("#formLibro").addEventListener("submit", (e) => intentar(async () => {
   mensaje(datos.id ? "Libro actualizado" : "Libro creado");
   cargarLibros();
 }));
+// AQUI TERMINA EL GUARDADO DE LIBROS DEL ADMIN XD
 
+// AQUI EL ADMIN GUARDA USUARIOS XD: SI TIENE ID EDITA, SI NO TIENE ID CREA
 $("#formUsuario").addEventListener("submit", (e) => intentar(async () => {
   e.preventDefault();
   const datos = datosForm(e.target);
@@ -197,6 +214,7 @@ $("#formUsuario").addEventListener("submit", (e) => intentar(async () => {
   mensaje(datos.id ? "Usuario actualizado" : "Usuario creado");
   cargarUsuarios();
 }));
+// AQUI TERMINA EL GUARDADO DE USUARIOS DEL ADMIN XD
 
 $("#btnSalir").onclick = cerrarSesion;
 $("#btnBuscar").onclick = () => intentar(cargarLibros);

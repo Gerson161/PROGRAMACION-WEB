@@ -5,6 +5,7 @@ const { verificarToken, soloAdmin } = require("./intermediarios");
 
 const router = express.Router();
 
+// AQUI EL USUARIO SOLICITA UN PRESTAMO XD
 router.post("/", verificarToken, async (req, res) => {
   const libro = await Libro.findByPk(req.body.libro_id);
   if (!libro) return res.status(404).json({ mensaje: "Libro no encontrado" });
@@ -22,6 +23,7 @@ router.post("/", verificarToken, async (req, res) => {
   res.status(201).json({ mensaje: "Prestamo solicitado", prestamo });
 });
 
+// AQUI SE LISTAN PRESTAMOS XD: USUARIO VE LOS SUYOS Y ADMIN VE TODOS
 router.get("/", verificarToken, async (req, res) => {
   const where = req.usuario.rol === "admin" ? {} : { usuario_id: req.usuario.id };
   const prestamos = await Prestamo.findAll({
@@ -35,6 +37,7 @@ router.get("/", verificarToken, async (req, res) => {
   res.json(prestamos);
 });
 
+// AQUI EL ADMIN APRUEBA PRESTAMOS XD
 router.put("/:id/aprobar", verificarToken, soloAdmin, async (req, res) => {
   const prestamo = await Prestamo.findByPk(req.params.id);
   if (!prestamo) return res.status(404).json({ mensaje: "Prestamo no encontrado" });
@@ -48,6 +51,7 @@ router.put("/:id/aprobar", verificarToken, soloAdmin, async (req, res) => {
   res.json({ mensaje: "Prestamo aprobado", prestamo });
 });
 
+// AQUI EL ADMIN REGISTRA DEVOLUCIONES XD
 router.put("/:id/devolver", verificarToken, soloAdmin, async (req, res) => {
   const prestamo = await Prestamo.findByPk(req.params.id);
   if (!prestamo) return res.status(404).json({ mensaje: "Prestamo no encontrado" });

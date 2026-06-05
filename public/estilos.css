@@ -30,6 +30,7 @@ body {
   margin-bottom: 14px;
 }
 
+/* INICIO DE ESTILOS DEL APARTADO DE REGISTRO E INGRESO */
 #seccionAuth,
 .gridFormulario,
 .tarjetas {
@@ -40,11 +41,13 @@ body {
 #seccionAuth {
   grid-template-columns: 1fr 1fr;
 }
+/* FIN DE ESTILOS DEL APARTADO DE REGISTRO E INGRESO */
 
 .gridFormulario {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* AQUI SE ACOMODAN LAS TARJETAS DEL CATALOGO DE LIBROS XD */
 .tarjetas {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
@@ -53,6 +56,7 @@ body {
   border: 1px solid #ccc;
   padding: 10px;
 }
+/* AQUI TERMINAN LAS TARJETAS DEL CATALOGO XD */
 
 form,
 .accionesLinea,
@@ -65,9 +69,11 @@ form,
   grid-template-columns: 1fr 90px 90px;
 }
 
+/* AQUI VAN LOS BOTONES DE CADA LIBRO XD: PRESTAR, EDITAR, ELIMINAR */
 .accionesTarjeta {
   grid-template-columns: repeat(3, 1fr);
 }
+/* AQUI TERMINAN LOS BOTONES DE CADA LIBRO XD */
 
 input,
 select,
@@ -94,7 +100,7 @@ button {
 .tablaSimple {
   overflow-x: auto;
 }
-/* Caracteristicas de tabla*/
+/* AQUI VAN LAS TABLAS DE PRESTAMOS Y USUARIOS XD */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -106,6 +112,7 @@ td {
   padding: 8px;
   text-align: left;
 }
+/* AQUI TERMINAN LAS TABLAS DE PRESTAMOS Y USUARIOS XD */
 
 #mensaje {
   font-weight: bold;
@@ -118,12 +125,14 @@ td {
     margin-bottom: 15px;
   }
 
+  /* INICIO DE ESTILOS RESPONSIVE DEL REGISTRO E INGRESO */
   #seccionAuth,
   .gridFormulario,
   .accionesLinea {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+  /* FIN DE ESTILOS RESPONSIVE DEL REGISTRO E INGRESO */
 
   .gridFormulario > *,
   .accionesLinea > * {

@@ -18,9 +18,10 @@
   </header>
 
   <main class="contenedor">
-    <!-- pa registrarse y logiarse en la pajina -->
+    <!-- INICIO DEL APARTADO DE REGISTRO E INGRESO: AQUI ESTA LA PARTE VISUAL DEL LOGIN Y REGISTRO -->
     <section id="seccionAuth" class="panel">
       <div>
+        <!-- INICIO DEL FORMULARIO DE REGISTRO -->
         <h2>Registro</h2>
         <form id="formRegistro">
           <input name="nombre" placeholder="Nombre" required>
@@ -28,18 +29,24 @@
           <input name="contrasena" type="password" placeholder="Contrasena" required>
           <button type="submit">Registrarse</button>
         </form>
+        <!-- FIN DEL FORMULARIO DE REGISTRO -->
       </div>
       <div>
+        <!-- INICIO DEL FORMULARIO DE INGRESO / LOGIN -->
         <h2>Ingreso</h2>
         <form id="formIngreso">
           <input name="correo" type="email" placeholder="Correo" required>
           <input name="contrasena" type="password" placeholder="Contrasena" required>
           <button type="submit">Iniciar sesion</button>
         </form>
+        <!-- FIN DEL FORMULARIO DE INGRESO / LOGIN -->
       </div>
     </section>
+    <!-- FIN DEL APARTADO DE REGISTRO E INGRESO -->
 
+    <!-- AQUI EMPIEZA LA BIBLIOTECA YA LOGEADO XD: TODO LO QUE VE USUARIO Y ADMIN -->
     <section id="seccionSistema" class="oculto">
+      <!-- AQUI VA EL CATALOGO DE LIBROS XD: ESTO LO VE EL USUARIO Y TAMBIEN EL ADMIN -->
       <section class="panel">
         <div class="encabezadoPanel">
           <h2>Catalogo de libros</h2>
@@ -51,7 +58,9 @@
         </div>
         <div id="listaLibros" class="tarjetas"></div>
       </section>
+      <!-- AQUI TERMINA EL CATALOGO DE LIBROS XD -->
 
+      <!-- AQUI EMPIEZA LO DE ADMIN PARA CREAR O EDITAR LIBROS XD -->
       <section id="panelAdminLibros" class="panel oculto">
         <h2>Gestionar libros</h2>
         <form id="formLibro" class="gridFormulario">
@@ -64,12 +73,16 @@
           <button type="button" id="btnCancelarLibro">Cancelar</button>
         </form>
       </section>
+      <!-- AQUI TERMINA LO DE ADMIN PARA CREAR O EDITAR LIBROS XD -->
 
+      <!-- AQUI VAN LOS PRESTAMOS XD: USUARIO VE LOS SUYOS Y ADMIN VE TODOS -->
       <section class="panel">
         <h2 id="tituloPrestamos">Mis prestamos</h2>
         <div id="listaPrestamos" class="tablaSimple"></div>
       </section>
+      <!-- AQUI TERMINA LA TABLA DE PRESTAMOS XD -->
 
+      <!-- AQUI EMPIEZA LO DE ADMIN PARA MANEJAR USUARIOS XD -->
       <section id="panelUsuarios" class="panel oculto">
         <h2>Gestionar usuarios</h2>
         <form id="formUsuario" class="gridFormulario">
@@ -86,7 +99,9 @@
         </form>
         <div id="listaUsuarios" class="tablaSimple"></div>
       </section>
+      <!-- AQUI TERMINA LO DE ADMIN PARA MANEJAR USUARIOS XD -->
     </section>
+    <!-- AQUI TERMINA LA BIBLIOTECA YA LOGEADO XD -->
 
     <p id="mensaje"></p>
   </main>
