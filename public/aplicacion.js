@@ -10,6 +10,28 @@ const esAdmin = () => estado.usuario?.rol === "admin";
 const datosForm = (form) => Object.fromEntries(new FormData(form));
 const cuerpo = (datos) => ({ body: JSON.stringify(datos) });
 
+// Control del auth
+function mostrarTab(tab) {
+  const formIngreso = document.getElementById('formIngreso');
+  const formRegistro = document.getElementById('formRegistro');
+  const tabIngreso = document.getElementById('tabIngreso');
+  const tabRegistro = document.getElementById('tabRegistro');
+
+  if (tab === 'ingreso') {
+    formIngreso.classList.remove('oculto');
+    formRegistro.classList.add('oculto');
+    tabIngreso.classList.add('activo');
+    tabRegistro.classList.remove('activo');
+  } else {
+    formRegistro.classList.remove('oculto');
+    formIngreso.classList.add('oculto');
+    tabRegistro.classList.add('activo');
+    tabIngreso.classList.remove('activo');
+  }
+
+  document.getElementById('mensaje').textContent = '';
+}
+
 // Mostrar mensaje de manera temporal
 function mensaje(texto) {
   $("#mensaje").textContent = texto;

@@ -18,31 +18,53 @@
   </header>
 
   <main class="contenedor">
-    <!-- INICIO DEL APARTADO DE REGISTRO E INGRESO: AQUI ESTA LA PARTE VISUAL DEL LOGIN Y REGISTRO -->
-    <section id="seccionAuth" class="panel">
-      <div>
-        <!-- INICIO DEL FORMULARIO DE REGISTRO -->
-        <h2>Registro</h2>
-        <form id="formRegistro">
-          <input name="nombre" placeholder="Nombre" required>
-          <input name="correo" type="email" placeholder="Correo" required>
-          <input name="contrasena" type="password" placeholder="Contrasena" required>
-          <button type="submit">Registrarse</button>
+    <!-- AQUI EMPIEZA EL LOGIN Y REGISTRO NUEVO XD: LO TRAJERON DEL REPO -->
+    <section id="seccionAuth">
+      <div class="auth-wrap">
+        <div class="auth-logo">
+          <span class="auth-logo-icon">&#9645;</span>
+          <span class="auth-logo-text">Biblioteca</span>
+        </div>
+
+        <div class="auth-tabs">
+          <button class="auth-tab activo" id="tabIngreso" onclick="mostrarTab('ingreso')">Ingresar</button>
+          <button class="auth-tab" id="tabRegistro" onclick="mostrarTab('registro')">Registrarse</button>
+        </div>
+
+        <!-- AQUI VA EL FORMULARIO DE INGRESO / LOGIN XD -->
+        <form id="formIngreso" class="auth-form">
+          <div class="auth-campo">
+            <label>Correo</label>
+            <input name="correo" type="email" placeholder="correo@ejemplo.com" required>
+          </div>
+          <div class="auth-campo">
+            <label>Contrasena</label>
+            <input name="contrasena" type="password" placeholder="********" required>
+          </div>
+          <button type="submit" class="auth-btn">Iniciar sesion</button>
         </form>
-        <!-- FIN DEL FORMULARIO DE REGISTRO -->
-      </div>
-      <div>
-        <!-- INICIO DEL FORMULARIO DE INGRESO / LOGIN -->
-        <h2>Ingreso</h2>
-        <form id="formIngreso">
-          <input name="correo" type="email" placeholder="Correo" required>
-          <input name="contrasena" type="password" placeholder="Contrasena" required>
-          <button type="submit">Iniciar sesion</button>
+
+        <!-- AQUI VA EL FORMULARIO DE REGISTRO XD -->
+        <form id="formRegistro" class="auth-form oculto">
+          <div class="auth-campo">
+            <label>Nombre</label>
+            <input name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="auth-campo">
+            <label>Correo</label>
+            <input name="correo" type="email" placeholder="correo@ejemplo.com" required>
+          </div>
+          <div class="auth-campo">
+            <label>Contrasena</label>
+            <input name="contrasena" type="password" placeholder="********" required>
+          </div>
+          <button type="submit" class="auth-btn">Crear cuenta</button>
         </form>
-        <!-- FIN DEL FORMULARIO DE INGRESO / LOGIN -->
+
+        <p id="mensaje" class="auth-mensaje"></p>
       </div>
     </section>
-    <!-- FIN DEL APARTADO DE REGISTRO E INGRESO -->
+    <!-- AQUI TERMINA EL LOGIN Y REGISTRO NUEVO XD -->
 
     <!-- AQUI EMPIEZA LA BIBLIOTECA YA LOGEADO XD: TODO LO QUE VE USUARIO Y ADMIN -->
     <section id="seccionSistema" class="oculto">
@@ -102,8 +124,6 @@
       <!-- AQUI TERMINA LO DE ADMIN PARA MANEJAR USUARIOS XD -->
     </section>
     <!-- AQUI TERMINA LA BIBLIOTECA YA LOGEADO XD -->
-
-    <p id="mensaje"></p>
   </main>
 
   <!-- pa cargar el yabscript del sitio -->
