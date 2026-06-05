@@ -6,7 +6,7 @@ const estado = {
 
 // para controlar el html
 const $ = (selector) => document.querySelector(selector);
-const esAdmin = () => estado.usuario ? .rol === "admin";
+const esAdmin = () => estado.usuario?.rol === "admin";
 const datosForm = (form) => Object.fromEntries(new FormData(form));
 const cuerpo = (datos) => ({ body: JSON.stringify(datos) });
 
